@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload a pet to PawsomePartners</title>
+    <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
+    <link href="icons/css/fontawesome.min.css" rel="stylesheet">
+    <link href="icons/css/solid.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="/" class="title">
+            <img src="images/logo.png" alt="Logo">
+            <span class="main-text">PawsomePartners</span>
+        </a>
+        <ul class="navlinks">
+            <li><a class="main-text" href="/dogs"><i class="fas fa-dog"></i><span class="main-text"> Our Dogs</span></a></li>
+            <li><a class="main-text" href="/cats"><i class="fas fa-cat"></i><span class="main-text"> Our Cats</span></a></li>
+            <li><a class="main-text" href="/profile"><i class="fas fa-user"></i><span class="main-text"> My profile</span></a></li>
+            <li><a class="main-text" href="/logout"><i class="fas fa-sign-out-alt"></i><span class="main-text"> Log out</span></a></li>
+        </ul>
+    </nav>
+    
+    <h1 class="pretty-header main-text">Facilitate a pet's journey to adoption</h1>
+    <h2 class="pretty-header main-text">Whether you're parting ways with a beloved pet or extending your care to a homeless animal, your actions are commendable.</h2>
+    <h2 class="pretty-header main-text"><small class="main-text">This brings the animal closer to finding a caring family. Please provide additional details about the animal.</small></h2>
+
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        
+        <div class="form-item left-item">
+        <label for="first-name">Species: *</label>
+        <select name="species" id="species">
+            <option value="Dog">Dog</option>
+            <option value="Cat">Cat</option>
+        </select>
+        </div>
+
+        <div class="form-item right-item">
+        <label for="name">Name: *</label>
+        <input type="text" name="name" id="name" placeholder="Jerry, Ruth..." required>
+        </div>
+
+        <div class="form-item left-item">
+        <label for="age">Age: *</label>
+        <input type="text" name="age" id="age" placeholder="in months" required>
+        </div>
+
+        <div class="form-item right-item">
+        <label for="gender">Gender: *</label>
+        <select name="gender" id="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+        </div>
+
+        <div class="form-item left-item">
+        <label for="breed">Breed: *</label>
+        <input type="text" name="breed" id="breed" placeholder="All breeds deserve love...">
+        </div>
+
+        <div class="form-item right-item">
+        <label for="image">Upload a picture: *</label>
+        <input type="file" name="image" id="image" accept="image/*">
+        </div>
+
+        <div class="form-item full-item">
+        <label for="likes">Likes:</label>
+        <input type="text" name="likes" id="likes" placeholder="treats, cuddles">
+        </div>
+
+        <div class="form-item full-item">
+        <label for="dislikes">Dislikes:</label>
+        <input type="text" name="dislikes" id="dislikes" placeholder="strangers, noises">
+        </div>
+
+       
+
+        <div class="form-item full-item">
+        <button type="submit">Submit</button>
+        </div>
+
+    </form>
+
+    <div class="footer">
+        <span class="main-text">Copyright <small><i class="fas fa-copyright"></i></small> 2023</span>
+        <span class="main-text">
+            <small><i class="fas fa-phone"></i></small>&nbsp&nbsp 123-4567
+            <br>
+            <small><i class="fas fa-envelope"></i></small>&nbsp&nbsp pawsomepartners@gmail.com
+        </span>
+    </div>
+    
+</body>
+</html>

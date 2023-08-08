@@ -1,10 +1,10 @@
-# PawsomePartners
+# PawsomePartners 🐶
 
 Find loving homes for stray animals. Adopt or put dogs and cats up for adoption.
 
 PawsomePartners is a community-driven website designed to unite people in the quest to find forever homes for stray animals.
 
-Built using Node.js and MongoDB. Utilizes vanilla HTML and CSS for the frontend.
+Built using Node.js and MongoDB. Utilizes EJS for the frontend.
 
 # Installation
 

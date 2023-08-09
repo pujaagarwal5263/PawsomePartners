@@ -10,7 +10,7 @@ const fs = require('fs');
 
 require('dotenv').config();
 
-const connectionURL = "mongodb://127.0.0.1/PawsomePartnersDB";
+const connectionURL = "mongodb+srv://pujuagarwal5263:7590863884@cluster0.ca58dmt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 const app = express();
 

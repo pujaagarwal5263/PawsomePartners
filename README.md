@@ -1,16 +1,16 @@
 # PawsomePartners 🐶
 
-Find loving homes for stray animals. Adopt or put dogs and cats up for adoption.
+Facilitate the discovery of caring forever homes for homeless animals. Embrace the option to adopt or offer dogs and cats for adoption.
 
-PawsomePartners is a community-driven website designed to unite people in the quest to find forever homes for stray animals.
+PawsomePartners stands as a collaborative online platform, dedicated to bringing individuals together on a shared mission: securing permanent, loving homes for stray animals.
 
-Built using Node.js and MongoDB. Utilizes EJS for the frontend.
+Powered by the robust combination of Node.js and MongoDB, with an elegant frontend crafted through EJS.
 
 # Installation
 
-## 1. Restore MongoDB database locally
+## 1. Setup MongoDB database 
 
-Ensure MongoDB is installed. The MongoDB .bson files are placed in /db/PawsomePartnersDB. 
+Replace the connection URL with your active mongoDB URL.
 
 
 ## 2. Installing dependencies
@@ -31,5 +31,6 @@ In project root, run following code to start the server.
 node app
 ```
 
-Access the website from any browser at <a> localhost:3000 </a>
+Access the website from any browser at <strong>localhost:3000</strong>
+Live project at <a href="https://pawsome-partners.onrender.com/" target="_blank">Pawsome-Partners</a>
 

@@ -33,5 +33,5 @@ node app
 
 Access the website from any browser at <strong>localhost:3000</strong>
 <br>
-Live project at <a href="https://pawsome-partners.onrender.com/" target="_blank">Pawsome-Partners</a>
+Live project at <a href="https://pawsome-partners.onrender.com/" target="_blank">Pawsome-Partners</a> 🚀
 

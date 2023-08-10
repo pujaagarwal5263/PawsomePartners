@@ -46,7 +46,7 @@
             <% pets.filter(pet => pet.species == 'Dog').forEach(dog => { %>
                 <div class="pet" id="<%= dog._id %>">
                     <i class="fas fa-times-circle pet-delete" onclick="deletePet(this)"></i>
-                    <img class="pet-picture" src="images/pets/<%= dog.image %> " alt="">
+                    <img class="pet-picture" src="<%= dog.image %>" alt="">
                     <p class="pet-name"><%= dog.name %> </p>
                     <ul class="pet-description">
                         <li><i class="fas fa-paw"></i> <%= dog.gender %></li>
@@ -78,7 +78,7 @@
             <% pets.filter(pet => pet.species == 'Cat').forEach(cat => { %>
                 <div class="pet" id="<%= cat._id %>">
                     <i class="fas fa-times-circle pet-delete" onclick="deletePet(this)"></i>
-                    <img class="pet-picture" src="images/pets/<%= cat.image %> " alt="">
+                    <img class="pet-picture" src="<%= cat.image %>" alt="">
                     <p class="pet-name"><%= cat.name %> </p>
                     <ul class="pet-description">
                         <li><i class="fas fa-paw"></i> <%= cat.gender %></li>

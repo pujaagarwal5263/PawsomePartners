@@ -7,10 +7,33 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const fs = require('fs');
+const cloudinary = require('cloudinary').v2
 
 require('dotenv').config();
+cloudinary.config({ 
+  cloud_name: process.env.CLOUD_NAME, 
+  api_key: process.env.API_KEY, 
+  api_secret: process.env.API_SECRET 
+});
 
-const connectionURL = "mongodb+srv://pujuagarwal5263:7590863884@cluster0.ca58dmt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+
+const connectionURL = "mongodb+srv://pujuagarwal5263:7590863884@cluster0.ca58dmt.mongodb.net/PawsomePartnersDB?retryWrites=true&w=majority";
+
+// Multer Configuration
+const storage = multer.diskStorage({
+    destination: (req, file, callback) => {
+      callback(null, 'assets/images/pets');
+    },
+    filename: (req, file, callback) => {
+      let newname = Date.now();
+      let splitname = file.originalname.split('.');
+      let extension = splitname[splitname.length - 1];
+      let finalname = newname + '.' + extension;
+      callback(null, finalname);
+    }
+  });
+  
+  const upload = multer({ storage: storage }).single('image');
 
 const app = express();
 
@@ -239,58 +262,39 @@ app.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
-app.post('/upload', (req, res) => {
-
+app.post('/upload', async(req, res) => {
     let user = authenticate(req.cookies);
     if (!user) res.redirect('/login');
     else {
-        
-        let image;
-
-        const storageWay = multer.diskStorage({
-
-            destination: (req, file, callback) => {
-                callback(null, 'assets/images/pets');
-            },
-
-            filename: (req, file, callback) => {    
-                let newname = Date.now();
-                let splitname = file.originalname.split('.');
-                let extension = splitname[splitname.length-1];
-                
-                let finalname = newname + "." + extension;
-                image = finalname;
-                callback(null, finalname);
-            }
-
-        });
-
-        let upload = multer({ storage: storageWay }).single('image');
-        
-        upload(req, res, () => {
-
-            let species, name, age, gender, breed, likes, dislikes, owner;
-
-            species = req.body.species.trim();
-            name = req.body.name.trim();
-            age = req.body.age.trim();
-            gender = req.body.gender.trim();
-            breed = req.body.breed.trim();
-            likes = req.body.likes && req.body.likes.trim();
-            dislikes = req.body.dislikes && req.body.dislikes.trim();
-            owner = user.name;
-            
-            let pet = { species, name, age, gender, breed, image, owner };
-            if (likes) pet.likes = likes;
-            if (dislikes) pet.dislikes = dislikes;
-
-            db.collection("Pets").insertOne(pet, (err, result) => {
+        upload(req, res, async () => {
+            try {
+              const cloudinaryResponse = await cloudinary.uploader.upload(req.file.path);
+              const imageUrl = cloudinaryResponse.secure_url;
+    
+              let species, name, age, gender, breed, likes, dislikes, owner;
+    
+              species = req.body.species.trim();
+              name = req.body.name.trim();
+              age = req.body.age.trim();
+              gender = req.body.gender.trim();
+              breed = req.body.breed.trim();
+              likes = req.body.likes && req.body.likes.trim();
+              dislikes = req.body.dislikes && req.body.dislikes.trim();
+              owner = user.name;
+    
+              let pet = { species, name, age, gender, breed, image: imageUrl, owner };
+              if (likes) pet.likes = likes;
+              if (dislikes) pet.dislikes = dislikes;
+    
+              db.collection('Pets').insertOne(pet, (err, result) => {
                 if (err) throw err;
                 res.redirect('/');
-            });
-
-        });
-
+              });
+            }catch(error){
+                console.log(error)
+                console.log("error in uploading")
+            }
+        })
     }
 });
 
@@ -324,14 +328,6 @@ app.post('/delete', (req, res) => {
     let user = authenticate(req.cookies);
     if (!user) res.redirect('/login');
     let idPet = req.body.id;
-    
-    db.collection("Pets").findOne({_id: ObjectId(idPet)}, (err, result) => {
-        if (err) throw err;
-        let image = result.image;
-        fs.unlink('assets/images/pets/' + image, (err) => {
-            if (err) throw err;
-        });
-    });
 
     db.collection("Pets").deleteOne({_id: ObjectId(idPet)}, (err, obj) => {
         if (err) throw err;

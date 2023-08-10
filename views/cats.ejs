@@ -42,7 +42,7 @@
         
             <% cats.forEach(cat => { %>
                 <div class="pet">
-                    <img class="pet-picture" src="images/pets/<%= cat.image %> " alt="">
+                    <img class="pet-picture" src="<%= cat.image %>" alt="">
                     <p class="pet-name"><%= cat.name %> </p>
                     <ul class="pet-description">
                         <li><i class="fas fa-paw"></i> <%= cat.gender %></li>

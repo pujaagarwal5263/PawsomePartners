@@ -43,7 +43,7 @@
         
             <% dogs.forEach(dog => { %>
                 <div class="pet">
-                    <img class="pet-picture" src="images/pets/<%= dog.image %> " alt="">
+                    <img class="pet-picture" src="<%= dog.image %>" alt="image not found">
                     <p class="pet-name"><%= dog.name %> </p>
                     <ul class="pet-description">
                         <li><i class="fas fa-paw"></i> <%= dog.gender %></li>
